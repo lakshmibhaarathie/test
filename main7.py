@@ -99,7 +99,7 @@ class updateSchema(BaseModel):
 def filter_post(post):
     pro_post=dict()          #processed post
     for i, j in post.items():
-        if j != None:
+        if j != (None,):
             pro_post[i] = j
     post_key=list(pro_post.keys())
     return pro_post,post_key
@@ -146,4 +146,4 @@ def update_post(id: int, post:updateSchema):
         (pro_post['published'],str(id)) )
         updated_post = cur.fetchone()
         con.commit()
-    return {"message":f"post updated successfully..! {updated_post}"}
+    return {"message":updated_post}
